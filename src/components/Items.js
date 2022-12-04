@@ -1,9 +1,9 @@
 import ListGroup from 'react-bootstrap/ListGroup';
 import CardView from './CardView';
-import Phone from './phone.jpg';
-import Tv from './tv.jpg';
-import Laptop from './laptop.jpg';
-import House from './house.jpg';
+import Phone from '../img/phone.jpg'
+import Tv from '../img/tv.jpg';
+import Laptop from '../img/laptop.jpg';
+import House from '../img/house.jpg';
 function Items() {
   return (
     <ListGroup horizontal>
