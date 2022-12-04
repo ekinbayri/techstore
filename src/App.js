@@ -12,7 +12,7 @@ function App() {
         <Col><Header /></Col>
       </Row>
       <Row>
-        <Col > <Items /> </Col>
+        <Col className = "center"> <Items /> </Col>
       </Row>
       
     </Container>
