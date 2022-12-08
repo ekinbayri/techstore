@@ -8,9 +8,7 @@ import CategoryElement from '../components/CategoryElement';
 function Index() {
     return (
 <Container fluid = "true">
-    <Row>
-        <Col><Header /></Col>
-    </Row>
+    
     <Row>
         <Col><CategoryElement /></Col>
     </Row>
