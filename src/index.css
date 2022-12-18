@@ -19,5 +19,12 @@ a{
   display: flex;
   justify-content: center;
 }
-
+.formCenter{
+    margin: auto;
+    width: 50%;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 50px;
+}
 
