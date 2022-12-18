@@ -26,7 +26,7 @@ function Register() {
         setPassword(value)
     }
     const sendRequest = (path) =>{
-        fetch("auth/" + path,{
+        fetch("http://localhost:8080/" + path,{
             method : "POST",
             headers : {
                 "Content-Type":"application/json"
@@ -51,7 +51,6 @@ function Register() {
         sendRequest("register")
         setName("")
         setSurname("")
-        console.log("sikicem")
         
     }
 
