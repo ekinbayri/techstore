@@ -3,13 +3,14 @@ import Form from 'react-bootstrap/Form';
 import Header from '../components/Header.js';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 function Register() {
     const [name,setName] = useState("")
     const [surname,setSurname] = useState("")
     const [phoneNumber,setPhoneNumber] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
-
+    let navigate = useNavigate();
     const handleName = (value) =>{
         setName(value)
     }
@@ -26,7 +27,7 @@ function Register() {
         setPassword(value)
     }
     const sendRequest = (path) =>{
-        fetch("http://localhost:8080/" + path,{
+        fetch("http://localhost:8080/auth/" + path,{
             method : "POST",
             headers : {
                 "Content-Type":"application/json"
@@ -43,7 +44,11 @@ function Register() {
         .then((res) => res.json())
         .then((result) =>  {localStorage.setItem("tokenKey",result.message); 
                          localStorage.setItem("currentUser",result.userId);
-                         localStorage.setItem("name",name)})
+                         localStorage.setItem("currentUsername",result.name);
+                         localStorage.setItem("name",name);
+                         navigate(0);
+                         navigate("/");
+                         })
 
         .catch((err) => console.log(err))
     }
@@ -51,7 +56,11 @@ function Register() {
         sendRequest("register")
         setName("")
         setSurname("")
+        setEmail("")
+        setPhoneNumber("")
+        setPassword("")
         
+
     }
 
 

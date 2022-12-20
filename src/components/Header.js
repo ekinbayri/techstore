@@ -4,8 +4,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import { useNavigate } from "react-router-dom";
 function Header() {
+  let navigate = useNavigate();
+
+  function handleLogout(){
+    localStorage.removeItem("tokenKey")
+    localStorage.removeItem("currentUser")
+    localStorage.removeItem("userName")
+    navigate("/")
+  } 
   return (
     <Navbar bg="dark" variant = "dark" expand="lg">
       <Container> 
@@ -13,8 +21,8 @@ function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/register">Register</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
+          {localStorage.getItem("currentUser") == null ? <Nav.Link href="/register">Register</Nav.Link>:<Nav.Link href="/profile">Profile</Nav.Link>}
+          {localStorage.getItem("currentUser") == null ? <Nav.Link href="/login">Login</Nav.Link>:<Nav.Link onClick={handleLogout}>Logout</Nav.Link>} 
             <NavDropdown title="Items" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
