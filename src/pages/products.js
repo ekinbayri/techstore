@@ -1,14 +1,10 @@
-import { ListGroup } from "react-bootstrap";
+
 import CardView from "../components/CardView";
-import Phone from '../img/phone.jpg'
-import Tv from '../img/tv.jpg';
-import Laptop from '../img/laptop.jpg';
-import House from '../img/house.jpg';
 import Header from '../components/Header.js';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useSearchParams } from "react-router-dom";
+
 function Products(){
     let productType = localStorage.getItem("productType");
     let img = localStorage.getItem("img");
