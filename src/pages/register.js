@@ -44,8 +44,8 @@ function Register() {
         .then((res) => res.json())
         .then((result) =>  {localStorage.setItem("tokenKey",result.message); 
                          localStorage.setItem("currentUser",result.userId);
-                         localStorage.setItem("currentUsername",result.name);
-                         localStorage.setItem("name",name);
+                         localStorage.setItem("currentUsername",name);
+                        
                          navigate(0);
                          navigate("/");
                          })

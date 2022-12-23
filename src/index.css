@@ -48,3 +48,6 @@ a{
 .profileColumn:hover{
   background-color: rgb(105, 185, 223);
 }
+h3{
+  padding-top: 30px;
+}

@@ -1,16 +1,17 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function CardView({img,cardTitle,cardText,buttonLink}) {
+function CardView({img,cardTitle,cardText,buttonText,buttonLink}) {
+  
   return (
     <Card style={{ width: '18rem'}}>
-      <Card.Img variant="top" src={img} height = {186} />
+      <Card.Img variant="top" src={`../img/${img}.jpg`} height = {186} />
       <Card.Body>
         <Card.Title>{cardTitle}</Card.Title>
         <Card.Text>
           {cardText}
         </Card.Text>
-        <Button variant="primary">{buttonLink}</Button>
+        <Button variant="primary" href = {buttonLink} onClick = {() => {localStorage.setItem("productType",cardTitle); localStorage.setItem("img",img)}}>{buttonText}</Button>
       </Card.Body>
     </Card>
   );
