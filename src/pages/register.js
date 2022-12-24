@@ -93,7 +93,8 @@ function Register() {
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password"  onChange={(e) => handlePassword(e.target.value)} />
+        <Form.Control type="password" placeholder="Password"  onChange={(e) => handlePassword(e.target.value)} />  
+        
       </Form.Group>
     
       <Button variant="primary" onClick={handleRegister}>

@@ -14,7 +14,7 @@ function Profile() {
     <Col md={2} className = "profileColumn bord" ><Nav.Link href = "/orders">My orders</Nav.Link> </Col>
     </Row>
     <Row className='row2'>
-    <Col md={2} className = "profileColumn bord"><Nav.Link href = "/"> My adresses </Nav.Link></Col>
+    <Col md={2} className = "profileColumn bord"><Nav.Link href = "/adresses"> My adresses </Nav.Link></Col>
     </Row>
     <Row className='row2'>
     <Col md={2} className = "profileColumn bord"> <Nav.Link href = "/">Billing information</Nav.Link> </Col>
