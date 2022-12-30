@@ -1,13 +1,13 @@
 import Header from './Header.js';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
-import AdressForm from './AdressForm.js';
+import AdressForm from './AddressForm.js';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 function Adresses() {
   function sendRequest(userId) {
-    fetch("http://localhost:8080/user/" + userId + "/adresses",{
+    fetch("http://localhost:8080/user/" + userId + "/addresses",{
       method : "GET",
       headers : {
           "Authorization": localStorage.getItem("tokenKey"),
