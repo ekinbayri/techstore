@@ -8,8 +8,9 @@ import Products from './pages/products.js';
 import Addresses from './pages/Addresses';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Basket from './pages/Basket';
-import BillingInformation from './pages/BillingInformation';
+
 import AdminPanel from './pages/AdminPanel';
+import { useState } from 'react';
 function App() {
 
   const [cartItems, setCartItems] = useState([]);
@@ -57,7 +58,7 @@ function App() {
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
       <Route path =  "/adminpanel" element = {<AdminPanel/>} />
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
-      <Route path = "/products" element = {<Products/>} />
+      <Route path = "/products" element = {<Products onAdd={onAdd} onRemove={onRemove}/>} />
       <Route path = "/mycart" element = {<Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>} />
     </Routes>
   </BrowserRouter>

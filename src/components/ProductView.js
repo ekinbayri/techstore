@@ -1,6 +1,17 @@
 import React from 'react'
 
-function ProductView() {
+function ProductView(props) {
+    const { cardTitle, cardText, buttonText, onAdd, onRemove } = props;
+    const  asdf = JSON.stringify({
+        cardTitle: cardTitle,
+        passwcord: password,
+
+    });
+    asdf.cardTitle = cardTitle;
+    asdf.cardText = cardText;
+    function sendInfo(){
+
+    }
   return (
     <Card style={{ width: '18rem'}}>
     <Card.Img variant="top" src={`../img/${img}.jpg`} height = {186} />
@@ -9,7 +20,7 @@ function ProductView() {
       <Card.Text>
         {cardText}
       </Card.Text>
-      <Button variant="primary">{buttonText}</Button>
+      <Button variant="primary" onClick = {onAdd(asdf)}>{buttonText}</Button>
     </Card.Body>
   </Card>
 
