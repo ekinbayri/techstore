@@ -33,9 +33,16 @@ function Login() {
       .then((result) =>  {localStorage.setItem("tokenKey",result.message); 
                        localStorage.setItem("currentUser",result.userId);
                        localStorage.setItem("currentUsername",result.name)
-                       localStorage.setItem("email",email);
+                       localStorage.setItem("email",email)
+                       localStorage.setItem("role",result.role);
                        navigate(0);
-                       navigate("/");})
+                       if(result.role == "admin"){
+                        navigate("/adminpanel");
+                       }
+                       else{
+                       navigate("/");
+                       }
+                       })
 
       .catch((err) => { setShow(true) })
   }

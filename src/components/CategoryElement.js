@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from "react-router-dom";
 function Categories() {
@@ -8,6 +9,27 @@ function Categories() {
     event.target.style.background="";
   }
   let navigate = useNavigate();
+
+  function getItems(){
+    fetch("http://localhost:8080/products/",{
+      method : "GET",
+      headers : {
+          "Authorization": localStorage.getItem("tokenKey"),
+          "Content-Type":"application/json"
+      },
+     
+  })
+    .then((res) => res.json())
+    .then((result) =>  console.log(result))
+    .catch((err) => console.log(err)) 
+  }
+
+  useEffect(() => {
+    getItems()
+    
+  }, []);
+
+
   return (
     <Nav className="justify-content-center" fill variant="tabs"
       activeKey="/home"
