@@ -1,4 +1,3 @@
-
 import './App.css';
 import Index from './pages/index.js';
 import Login from './pages/login.js';
@@ -6,8 +5,9 @@ import Profile from './pages/profile.js';
 import Register from './pages/register.js';
 import Orders from './components/Orders.js';
 import Products from './pages/products.js';
-import Addresses from './components/Addresses';
+import Addresses from './pages/Addresses';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import AddressForm from './components/AddressForm';
 function App() {
   return(
     <BrowserRouter>
@@ -15,15 +15,21 @@ function App() {
     <Routes>
       <Route index element={ <Index/> }/>
       
-      <Route path = "/profile" element = {<Profile/>}/>
+      <Route path = "/profile" element = {<Profile/>}>
+
+      <Route path = "addresses" element = {<Addresses/>}>
+      <Route path = "addressform" element = {<AddressForm/>}/>
+      </Route>
+      <Route path = "orders" element = {<Orders/>} />
+
+      </Route>
       
-      <Route path = "/orders" element = {<Orders/>} />
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
       
      
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
       <Route path = "/products" element = {<Products/>} />
-      <Route path = "/addresses" element = {<Addresses/>} />
+    
     </Routes>
   </BrowserRouter>
   )

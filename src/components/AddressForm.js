@@ -4,8 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-function AdressForm(){
+function AddressForm(){
     const [addressExplanation,setAddressExplanation] = useState("")
+    const [addressTitle,setAddressTitle] = useState("")
     const [city,setCity] = useState("")
     const [district,setDistrict] = useState("")
     const [street,setStreet] = useState("")
@@ -14,6 +15,9 @@ function AdressForm(){
     const handleAddressExplanation = (value) =>{
         setAddressExplanation(value)
     }
+    const handleAddressTitle = (value) =>{
+      setAddressTitle(value)
+  }
    
     const handleCity = (value) =>{
         setCity(value)
@@ -27,10 +31,11 @@ function AdressForm(){
     const handleForm = () =>{
         sendRequest()
         setAddressExplanation("")
+        setAddressTitle("")
         setCity("")
         setDistrict("")
         setStreet("")
-        
+        window.location.reload(false);
 
     }
     const sendRequest = () =>{
@@ -45,12 +50,12 @@ function AdressForm(){
                 district: district,
                 street: street,
                 addressExplanation: addressExplanation,
+                userId: parseFloat(localStorage.getItem("currentUser"))
 
-            }),
+            })
         })
         .then((res) => res.json())
-        .then((result) =>  {console.log(result);
-                         })
+        .then((result) =>  console.log(result))
 
         .catch((err) => console.log(err))
     }
@@ -89,4 +94,4 @@ function AdressForm(){
       );
     }
     
-    export default AdressForm;
+    export default AddressForm;
