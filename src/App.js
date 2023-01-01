@@ -8,6 +8,7 @@ import Products from './pages/products.js';
 import Addresses from './pages/Addresses';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MyCart from './pages/MyCart';
+import BillingInformation from './pages/BillingInformation';
 function App() {
   return(
     <BrowserRouter>
@@ -21,7 +22,7 @@ function App() {
       
   
       <Route path = "orders" element = {<Orders/>} />
-
+      <Route path = "billinginformation" element = {<BillingInformation/>}/>
       </Route>
       
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
