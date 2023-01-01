@@ -54,7 +54,7 @@ function handleShowForm(){
 
 useEffect(() => {
   sendRequest(localStorage.getItem("currentUser"))
-  
+
 }, []);
 
   return (
