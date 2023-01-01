@@ -7,10 +7,38 @@ import Orders from './components/Orders.js';
 import Products from './pages/products.js';
 import Addresses from './pages/Addresses';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import MyCart from './pages/MyCart';
+import Basket from './pages/Basket';
 import BillingInformation from './pages/BillingInformation';
 import AdminPanel from './pages/AdminPanel';
 function App() {
+
+  const [cartItems, setCartItems] = useState([]);
+  const onAdd = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
+        )
+      );
+    }
+  };
+  
+
   return(
     <BrowserRouter>
     
@@ -27,11 +55,10 @@ function App() {
       </Route>
       
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
-      <Route path =  "/adminpanel" element = <AdminPanel/> />
-     
+      <Route path =  "/adminpanel" element = {<AdminPanel/>} />
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
       <Route path = "/products" element = {<Products/>} />
-      <Route path = "/mycart" element = {<MyCart/>} />
+      <Route path = "/mycart" element = {<Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>} />
     </Routes>
   </BrowserRouter>
   )
