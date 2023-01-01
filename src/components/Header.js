@@ -23,17 +23,7 @@ function Header() {
           <Nav className="me-auto">
           {localStorage.getItem("currentUser") == null ? <Nav.Link href="/register">Register</Nav.Link>:<Nav.Link href="/profile">Profile</Nav.Link>}
           {localStorage.getItem("currentUser") == null ? <Nav.Link href="/login">Login</Nav.Link>:<Nav.Link onClick={handleLogout}>Logout</Nav.Link>} 
-            <NavDropdown title="Items" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+          <Nav.Link href="/mycart">My Cart</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

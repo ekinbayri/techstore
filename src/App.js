@@ -7,7 +7,7 @@ import Orders from './components/Orders.js';
 import Products from './pages/products.js';
 import Addresses from './pages/Addresses';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import AddressForm from './components/AddressForm';
+import MyCart from './pages/MyCart';
 function App() {
   return(
     <BrowserRouter>
@@ -17,9 +17,9 @@ function App() {
       
       <Route path = "/profile" element = {<Profile/>}>
 
-      <Route path = "addresses" element = {<Addresses/>}>
-      <Route path = "addressform" element = {<AddressForm/>}/>
-      </Route>
+      <Route path = "addresses" element = {<Addresses/>}/>
+      
+  
       <Route path = "orders" element = {<Orders/>} />
 
       </Route>
@@ -29,7 +29,7 @@ function App() {
      
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
       <Route path = "/products" element = {<Products/>} />
-    
+      <Route path = "/mycart" element = {<MyCart/>} />
     </Routes>
   </BrowserRouter>
   )

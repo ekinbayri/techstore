@@ -35,7 +35,8 @@ function AddressForm(){
         setCity("")
         setDistrict("")
         setStreet("")
-        navigate("/");
+        navigate(0);
+        
        
     }
     const sendRequest = () =>{

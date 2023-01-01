@@ -5,13 +5,14 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Card } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddressComponent from '../components/AddressComponent.js';
 import { Link, Outlet } from 'react-router-dom';
 function Addresses() {
   const [show,setShow] = useState(false)
   const [showForm,setShowForm] = useState(false)
   const[resultArr,setResultArr] = useState([])
+  const rows = [];
   function sendRequest(userId) {
     fetch("http://localhost:8080/user/" + userId + "/addresses",{
       method : "GET",
@@ -24,15 +25,16 @@ function Addresses() {
     .then((res) => res.json())
     .then((result) =>  setResultArr(result))
     .catch((err) => console.log(err)) 
-    const rows = [];
-    for (let i = 0; i < resultArr.length; i++) {
-    rows.push(<AddressComponent title = {resultArr[i].title} addressExplanation = {resultArr[i].addressExplanation} city = {resultArr[i].city} district = {resultArr[i].district} street = {resultArr[i].street} key={i} />);
-    }
-    return <Row>{rows}</Row>;
+   
+    
+  
   
 }
 function handleAddress(){
-  return sendRequest(localStorage.getItem("currentUser"))
+  for (let i = 0; i < resultArr.length; i++) {
+    rows.push(<AddressComponent title = {resultArr[i].title} addressExplanation = {resultArr[i].addressExplanation} city = {resultArr[i].city} district = {resultArr[i].district} street = {resultArr[i].street} key={i} />);
+    }
+  return <Row>{rows}</Row>;
 }
 function handleAddressForm(){
   return  (
@@ -44,13 +46,16 @@ function handleAddressForm(){
 }
 
 function handleShow(){
-  setShow(true)
+  setShow(!show)
 }
 function handleShowForm(){
-  setShowForm(true)
+  setShowForm(!showForm)
 }
 
-
+useEffect(() => {
+  sendRequest(localStorage.getItem("currentUser"))
+  
+}, []);
 
   return (
     <Container fluid = "true">
@@ -64,12 +69,14 @@ function handleShowForm(){
       <Button variant="outline-success" className = "asdf" onClick={handleShow}>
         Show Addresses
       </Button>
-      <Link to ="addressform"><Button variant="outline-success"  className = "asdf"> Add Address</Button></Link>
+      <Button variant="outline-success" className = "asdf" onClick={handleShowForm}>
+        Add Address
+      </Button>
       
       { show ? handleAddress() : null }
       {showForm ? handleAddressForm(): null}
      
-    <Outlet/>
+    
 </Container>
   );
 }
