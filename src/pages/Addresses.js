@@ -26,7 +26,7 @@ function Addresses() {
     .catch((err) => console.log(err)) 
     const rows = [];
     for (let i = 0; i < resultArr.length; i++) {
-    rows.push(<AddressComponent title = {resultArr[i].addressExplanation} city = {resultArr[i].city} district = {resultArr[i].district} street = {resultArr[i].street} key={i} />);
+    rows.push(<AddressComponent title = {resultArr[i].title} addressExplanation = {resultArr[i].addressExplanation} city = {resultArr[i].city} district = {resultArr[i].district} street = {resultArr[i].street} key={i} />);
     }
     return <Row>{rows}</Row>;
   

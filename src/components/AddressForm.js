@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 function AddressForm(){
     const [addressExplanation,setAddressExplanation] = useState("")
-    const [addressTitle,setAddressTitle] = useState("")
+    const [title,setTitle] = useState("")
     const [city,setCity] = useState("")
     const [district,setDistrict] = useState("")
     const [street,setStreet] = useState("")
@@ -16,7 +16,7 @@ function AddressForm(){
         setAddressExplanation(value)
     }
     const handleAddressTitle = (value) =>{
-      setAddressTitle(value)
+      setTitle(value)
   }
    
     const handleCity = (value) =>{
@@ -31,12 +31,12 @@ function AddressForm(){
     const handleForm = () =>{
         sendRequest()
         setAddressExplanation("")
-        setAddressTitle("")
+        setTitle("")
         setCity("")
         setDistrict("")
         setStreet("")
-        window.location.reload(false);
-
+        navigate("/");
+       
     }
     const sendRequest = () =>{
         fetch("http://localhost:8080/address",{
@@ -46,6 +46,7 @@ function AddressForm(){
                 "Content-Type":"application/json"
             },
             body : JSON.stringify({
+                title: title,
                 city : city,
                 district: district,
                 street: street,
@@ -62,11 +63,19 @@ function AddressForm(){
     return (
         <Form>
     
+    <Form.Group className="mb-3" controlId="formGridAddress1">
+        <Form.Label>Title of address</Form.Label>
+        <Form.Control placeholder="Home,Work,Friend's House" onChange={(e) => handleAddressTitle(e.target.value)}/>
+      </Form.Group>
+
+
+
       <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Address</Form.Label>
         <Form.Control placeholder="1234 Main St" onChange={(e) => handleAddressExplanation(e.target.value)}/>
       </Form.Group>
 
+     
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridCity">
