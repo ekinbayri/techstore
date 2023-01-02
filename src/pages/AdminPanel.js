@@ -1,8 +1,10 @@
 import React from 'react'
-import { Button, Card, Nav } from 'react-bootstrap'
+import { Button, Card, Container, Nav } from 'react-bootstrap'
+import { Link, Outlet } from 'react-router-dom'
 
 function AdminPanel() {
   return (
+    <Container fluid = "true">
     <Card>
     <Card.Header>
     <Card.Title>{"Welcome Admin:" + localStorage.getItem("currentUsername")}</Card.Title>
@@ -23,7 +25,7 @@ function AdminPanel() {
       <Button variant="outline-primary"  className = "buttontest">Manage users</Button>
         </Nav.Item>
         <Nav.Item>
-      <Button variant="outline-primary"  className = "buttontest">Manage products</Button>
+        <Link to ="productmanagement"><Button variant="outline-primary"  className = "buttontest">Add product</Button></Link>
         </Nav.Item>
         <Nav.Item>
       <Button variant="outline-primary"  className = "buttontest">Manage employees</Button>
@@ -32,6 +34,8 @@ function AdminPanel() {
       
     </Card.Body>
   </Card>
+  <Outlet/>
+  </Container>
   )
 }
 

@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
-import AddressForm from '../components/AddressForm.js';
+import AddressForm from '../forms/AddressForm.js';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
