@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import Log from '../components/LogComponent.js';
 function Logs() {
-    const [logs, setLogs] = useState([])
+  const [logs, setLogs] = useState([])
+    
     useEffect(() => {
-        fetch("http://localhost:8080/logs/",{
-            method : "GET",
-            headers : {
-                "Authorization": localStorage.getItem("tokenKey"),
-                "Content-Type":"application/json"
-            },
-           
-        })
-          .then((res) => res.json())
-          .then((result) =>  setLogs(result))
-          .catch((err) => console.log(err))
-      
+      fetch("http://localhost:8080/logs",{
+        method : "GET",
+        headers : {
+            "Authorization": localStorage.getItem("tokenKey"),
+            "Content-Type":"application/json"
+        },
+       
+    })
+      .then((res) => res.json())
+      .then((result) =>  setLogs(result))
+      .catch((err) => console.log(err)) 
     }, [])
+    
     
   return (
     <Table>
@@ -53,7 +54,7 @@ function Logs() {
       </thead>
 
       <tbody>
-        {logs.map((log) => <Log log = {log}/>)}
+        {logs.map(log => <Log log = {log}></Log>)}
       </tbody>
       
     </Table>
