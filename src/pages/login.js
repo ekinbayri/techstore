@@ -35,12 +35,12 @@ function Login() {
                        localStorage.setItem("currentUsername",result.name)
                        localStorage.setItem("email",email)
                        localStorage.setItem("role",result.role);
-                       navigate(0);
-                       if(result.role === "admin"){
+                       
+                       if(result.role == "admin"){
                         navigate("/adminpanel");
                        }
                        else{
-                       navigate("/");
+                       navigate(0);
                        }
                        })
 

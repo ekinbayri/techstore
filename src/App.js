@@ -12,6 +12,7 @@ import Basket from './pages/Basket';
 import AdminPanel from './pages/AdminPanel';
 import { useState } from 'react';
 import ManageProduct from './pages/ManageProduct';
+import UserDetails from './pages/UserDetails';
 function App() {
 
   const [cartItems, setCartItems] = useState([]);
@@ -51,7 +52,7 @@ function App() {
 
       <Route path = "addresses" element = {<Addresses/>}/>
       <Route path = "orders" element = {<Orders/>} />
-      
+      <Route path = "userdetails" element = {<UserDetails/>} />
       </Route>
       
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />

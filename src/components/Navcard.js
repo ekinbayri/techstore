@@ -23,10 +23,7 @@ function Navcard() {
         <Link to ="addresses"><Button variant="outline-primary"  className = "buttontest">My adresses</Button></Link>
         </Nav.Item>
         <Nav.Item>
-        <Link to ="billinginformation"><Button variant="outline-primary"  className = "buttontest">Billing information</Button></Link>
-        </Nav.Item>
-        <Nav.Item>
-        <Link to ="addresses"><Button variant="outline-primary"  className = "buttontest">Personal information</Button></Link>
+        <Link to ="userdetails"><Button variant="outline-primary"  className = "buttontest">Personal information</Button></Link>
         </Nav.Item>
       </Nav>
       

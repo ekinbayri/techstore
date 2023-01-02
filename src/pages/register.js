@@ -45,9 +45,9 @@ function Register() {
         .then((result) =>  {localStorage.setItem("tokenKey",result.message); 
                          localStorage.setItem("currentUser",result.userId);
                          localStorage.setItem("currentUsername",name);
-                        
+                         localStorage.setItem("email",result.email)
+                        localStorage.setItem("role",result.role);
                          navigate(0);
-                         navigate("/");
                          })
 
         .catch((err) => console.log(err))
