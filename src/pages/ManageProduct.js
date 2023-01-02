@@ -5,6 +5,8 @@ import ProductForm from '../forms/ProductForm'
 
 function ManageProduct() {
     const [show,setShow] = useState(false)
+    const [deleteItem,setDelete] = useState(false)
+    const [edit,setEdit] = useState(false)
     function handleShow(){
         setShow(!show)
       }

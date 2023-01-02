@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
-import Log from '../components/Log.js';
+import Log from '../components/LogComponent.js';
 function Logs() {
-    const [logs, setLogs] = useState([" "])
+    const [logs, setLogs] = useState([])
     useEffect(() => {
         fetch("http://localhost:8080/logs/",{
             method : "GET",
@@ -16,7 +16,7 @@ function Logs() {
           .then((result) =>  setLogs(result))
           .catch((err) => console.log(err))
       
-    }, [logs])
+    }, [])
     
   return (
     <Table>
