@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container } from 'react-bootstrap'
+import ProductForm from '../forms/ProductForm'
 
 
 function ManageProduct() {
@@ -8,7 +9,7 @@ function ManageProduct() {
         setShow(!show)
       }
     function handleProduct(){
-        
+        return <ProductForm/>
     }
 
 

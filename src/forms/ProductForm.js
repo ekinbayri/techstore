@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Button, Col, Row, Form } from 'react-bootstrap'
+
 
 function ProductForm() {
     const [name,setName] = useState("")
@@ -6,8 +8,8 @@ function ProductForm() {
     const [price,setPrice] = useState(0)
     const [quantity,setQuantity] = useState(1)
     const [description,setDescription] = useState("")
-    const [img,setImg] = useState("")
-    const img2 = Buffer.toString(image);
+    const [img,setImg] = useState(null)
+    {/*const img2 = Buffer.toString(image);*/}
 
     function handleName (value){
         setName(value)
@@ -24,6 +26,18 @@ function ProductForm() {
     function handleDescription(value){
         setDescription(value)
     }
+    function handleImg(value){
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const dataURL = reader.result;
+          setImg(dataURL);
+          
+        };
+        reader.readAsDataURL(value);
+    }
+    function handleForm(){
+        sendRequest();
+    }
     function sendRequest() {
         fetch("http://localhost:8080/products",{
             method : "POST",
@@ -37,6 +51,7 @@ function ProductForm() {
                 price: price,
                 quantity: quantity,
                 description: description,
+                photo:img,
             })
         })
         .then((res) => res.json())
@@ -78,9 +93,9 @@ function ProductForm() {
 
       <Form.Group controlId="formFile" className="mb-3">
         <Form.Label>Add picture</Form.Label>
-        <Form.Control type="file" onChange={(e) => testmethod(e.target.value)}/>
+        <Form.Control type="file" onChange={(e) => handleImg(e.target.files[0])}/>
       </Form.Group>
-     
+        
       <Button variant="primary" onClick={handleForm}>
         Submit
       </Button>
