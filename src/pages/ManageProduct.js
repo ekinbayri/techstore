@@ -15,8 +15,10 @@ function ManageProduct() {
 
 
   return (
-    <Container>
-            <Button variant="outline-primary"  className = "asdf"  onClick={handleShow}>Add product</Button>
+    <Container fluid = "true">
+            <Button variant="outline-primary"  className = "buttontest"  onClick={handleShow}>Add product</Button>
+            <Button variant="outline-primary"  className = "buttontest"  onClick={handleShow}>Delete product</Button>
+            <Button variant="outline-primary"  className = "buttontest"  onClick={handleShow}>Edit product</Button>
             { show ? handleProduct() : null }
     </Container>
    

@@ -13,6 +13,7 @@ import AdminPanel from './pages/AdminPanel';
 import { useState } from 'react';
 import ManageProduct from './pages/ManageProduct';
 import UserDetails from './pages/UserDetails';
+import Log from './components/Log';
 function App() {
 
   const [cartItems, setCartItems] = useState([]);
@@ -58,6 +59,7 @@ function App() {
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
       <Route path =  "/adminpanel" element = {<AdminPanel/>}>
       <Route path = "productmanagement" element = {<ManageProduct/>}/>
+      <Route path = "logs" element = {<Log/>}/>
       </Route>
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
       <Route path = "/products" element = {<Products onAdd={onAdd} onRemove={onRemove}/>} />

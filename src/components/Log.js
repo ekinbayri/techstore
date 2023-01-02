@@ -3,6 +3,7 @@ import React from 'react'
 function Log( log ) {
   return (
     <tr>
+      
         {log.key.sessionId != null ? <td>{log.key.sessionId}</td>: null}
         {log.key.sessionLineNum != null ? <td>{log.key.sessionLineNum}</td>: null}
         {log.logTime != null ? <td>{log.logTime}</td>: null}

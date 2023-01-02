@@ -19,13 +19,13 @@ function AdminPanel() {
         <Button variant="outline-primary"  className = "buttontest">Manage orders</Button>
         </Nav.Item>
         <Nav.Item>
-        <Button variant="outline-primary"  className = "buttontest">Manage logs</Button>
+         <Link to ="logs"><Button variant="outline-primary"  className = "buttontest">Manage logs</Button></Link>
         </Nav.Item>
         <Nav.Item>
       <Button variant="outline-primary"  className = "buttontest">Manage users</Button>
         </Nav.Item>
         <Nav.Item>
-        <Link to ="productmanagement"><Button variant="outline-primary"  className = "buttontest">Add product</Button></Link>
+        <Link to ="productmanagement"><Button variant="outline-primary"  className = "buttontest">Manage products</Button></Link>
         </Nav.Item>
         <Nav.Item>
       <Button variant="outline-primary"  className = "buttontest">Manage employees</Button>
