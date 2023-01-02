@@ -11,16 +11,9 @@ import {
   MDBCardText,
   MDBCardBody,
   MDBCardImage,
-  MDBBtn,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem,
-  MDBProgress,
-  MDBProgressBar,
-  MDBIcon,
-  MDBListGroup,
-  MDBListGroupItem
 } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function UserDetails() {
 
@@ -39,17 +32,13 @@ function UserDetails() {
         .then((result) => setResponse(result))
         .catch((err) => console.log(err)) 
       }
-    
-     
-      
-    
 
       useEffect(() => {
         getItems()
         /*
         response.name + " " + response.surname
         response.email*/
-      }, []);
+      },[]);
 
 
 
@@ -71,15 +60,15 @@ function UserDetails() {
                 <p className="text-muted mb-4">{ response.email}</p>
                 <div className="d-flex justify-content-center mb-2">
                     
-
-                    <Button className = "ms-1" variant="outline-primary" >Edit</Button>
+                <Link to ="/profile/userform" className="buttontest"><Button variant="outline-primary"> Edit</Button></Link>
+                    
                   
                 </div>
               </MDBCardBody>
             </MDBCard>
-
-         
           </MDBCol>
+
+          
           <MDBCol lg="8">
             <MDBCard className="mb-4">
               <MDBCardBody>
@@ -110,15 +99,7 @@ function UserDetails() {
                   </MDBCol>
                 </MDBRow>
                 <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Phone</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{response.email}</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
+              
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Mobile</MDBCardText>

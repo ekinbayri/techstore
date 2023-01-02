@@ -10,6 +10,12 @@ function ManageProduct() {
     function handleShow(){
         setShow(!show)
       }
+      function handleDelete(){
+        setDelete(!deleteItem)
+      }
+      function handleShow(){
+        setShow(!show)
+      }
     function handleProduct(){
         return <ProductForm/>
     }

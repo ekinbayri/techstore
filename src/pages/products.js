@@ -9,6 +9,7 @@ function Products(props){
     const { onAdd, onRemove } = props;
     let productType = localStorage.getItem("productType");
     let img = localStorage.getItem("img");
+
     return (
         <Container fluid = "true">
             <Header/>
