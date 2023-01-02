@@ -5,19 +5,6 @@ function Logs() {
   const [logs, setLogs] = useState([])
     
     useEffect(() => {
-<<<<<<< Updated upstream
-      fetch("http://localhost:8080/logs",{
-        method : "GET",
-        headers : {
-            "Authorization": localStorage.getItem("tokenKey"),
-            "Content-Type":"application/json"
-        },
-       
-    })
-      .then((res) => res.json())
-      .then((result) =>  setLogs(result))
-      .catch((err) => console.log(err)) 
-=======
         fetch("http://localhost:8080/logs/",{
             method : "GET",
             headers : {
@@ -30,7 +17,6 @@ function Logs() {
           .then((result) =>  console.log(result))
           .catch((err) => console.log(err))
       
->>>>>>> Stashed changes
     }, [])
     function asdf(){
       fetch("http://localhost:8080/logs/",{
@@ -82,11 +68,7 @@ function Logs() {
       </thead>
 
       <tbody>
-<<<<<<< Updated upstream
-        {logs.map(log => <Log log = {log}></Log>)}
-=======
         {logs.map((log) => <LogComponent log = {log}/>)}
->>>>>>> Stashed changes
       </tbody>
       
     </Table>
