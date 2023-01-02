@@ -81,12 +81,12 @@ function ProductForm() {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>District</Form.Label>
+          <Form.Label>Price</Form.Label>
           <Form.Control onChange={(e) => handlePrice(parseInt(e.target.value))}/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Street</Form.Label>
+          <Form.Label>Quantity</Form.Label>
           <Form.Control onChange={(e) => handleQuantity(parseInt(e.target.value))}/>
         </Form.Group>
       </Row>

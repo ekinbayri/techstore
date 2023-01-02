@@ -37,7 +37,6 @@ function AddressForm(){
         setStreet("")
         navigate(0);
         
-       
     }
     const sendRequest = () =>{
         fetch("http://localhost:8080/address",{
