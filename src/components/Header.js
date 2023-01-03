@@ -9,6 +9,7 @@ function Header() {
   let navigate = useNavigate();
 
   function handleLogout(){
+    localStorage.removeItem("tokenKey")
     localStorage.removeItem("currentUser")
     localStorage.removeItem("userName")
     navigate("/")

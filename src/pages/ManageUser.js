@@ -19,6 +19,19 @@ export default function ManageUser() {
         .then((result) =>  setUsers(result))
         .catch((err) => console.log(err)) 
       }, [])
+
+      function banUser(user){
+        fetch("http://localhost:8080/user/" + user.id,{
+          method : "DELETE",
+          headers : {
+              "Authorization": localStorage.getItem("tokenKey"),
+              "Content-Type":"application/json"
+          },
+         
+      })
+        .then(window.location.reload())
+        .catch((err) => console.log(err)) 
+      }
       function user(){
         for (let i = 0; i < users.length; i++) {
             console.log(users[i].id + " " + users[i].name)
@@ -29,7 +42,7 @@ export default function ManageUser() {
                       <MDBRow className="g-0">
                         <MDBCol md="4" className="gradient-custom text-center text-gray"
                           style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
-                          <Button style = {{marginTop:'100px',padding:'40px'}} variant = 'outline-danger'>Ban User </Button>
+                          <Button style = {{marginTop:'100px',padding:'40px'}} variant = 'outline-danger' onClick={() => banUser(users[i])}>Ban User </Button>
                         </MDBCol>
                         <MDBCol md="8">
                           <MDBCardBody className="p-4">
