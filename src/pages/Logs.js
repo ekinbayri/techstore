@@ -14,7 +14,7 @@ function Logs() {
        
     })
       .then((res) => res.json())
-      .then((result) =>  console.log(result))
+      .then((result) =>  setLogs(result))
       .catch((err) => console.log(err)) 
     }, [])
     
