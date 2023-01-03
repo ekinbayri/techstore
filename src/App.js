@@ -25,8 +25,32 @@ import ProductForm from './forms/ProductForm';
 function App() {
 
   const [cartItems, setCartItems] = useState([]);
-  const [countItems,setCountItems] = useState([]);
 
+  const addItem = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id && x.cartQuantity + 1 <= product.quantity ? { ...exist, cartQuantity: exist.cartQuantity + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, cartQuantity: 1 }]);
+    }
+  }
+  
+  const removeItem = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.cartQuantity === 1) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, cartQuantity: exist.cartQuantity - 1 } : x
+        )
+      );
+    }
+  };
 
   return(
     <BrowserRouter>
@@ -44,7 +68,7 @@ function App() {
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
 
       <Route path =  "/adminpanel" element = {<AdminPanel/>}>
-        <Route path = "productmanagement" element = {<ManageProduct/>}>
+        <Route path = "/productmanagement" element = {<ManageProduct/>}>
          
           <Route path = "deleteform" element = {<DeleteProductForm/>}/>
           <Route path = "editform" element = {<EditProductForm/>}/>
@@ -57,8 +81,8 @@ function App() {
       </Route>
 
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
-      <Route path = "/products" element = {<Products cartItems = {cartItems} setCartItems = {setCartItems} countItems = {countItems} setCountItems = {setCountItems}/>} />
-      <Route path = "/mycart" element = {<Basket cartItems={cartItems} countItems = {countItems} />} />
+      <Route path = "/products" element = {<Products cartItems = {cartItems} setCartItems = {setCartItems} addItem = {addItem} removeItem = {removeItem}/>} />
+      <Route path = "/mycart" element = {<Basket cartItems={cartItems} setCartItems = {setCartItems} addItem = {addItem} removeItem = {removeItem}/>} />
     </Routes>
   </BrowserRouter>
   )

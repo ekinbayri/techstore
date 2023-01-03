@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import {
   MDBCard,
@@ -14,13 +14,65 @@ import {
   } from "mdb-react-ui-kit";
 import Header from '../components/Header';
 import { Link, useNavigate } from 'react-router-dom';
-function Basket({cartItems, countItems}) {
+function Basket({cartItems, setCartItems, addItem, removeItem}) {
   const rows = [];
-  let totalCost = 0;
+  const title = "";
   let navigate = useNavigate();
+  const [cost, setCost] = useState(0)
+  const [selectedAddress, setSelectedAddress] = useState()
+  const [addresses, setAddresses] = useState([])
+
+  const onChangeOfAddress = (e) => {
+    const val = e.target.value;
+    e.preventDefault();
+    setSelectedAddress(val);
+  };
+
+  useEffect(() => {
+    calculatePrice()
+    fetch("http://localhost:8080/user/" + localStorage.getItem("currentUser") + "/addresses",{
+      method : "GET",
+      headers : {
+          "Authorization": localStorage.getItem("tokenKey"),
+          "Content-Type":"application/json"
+      },
+     
+  })
+    .then((res) => res.json())
+    .then((result) =>  setAddresses(result))
+    .catch((err) => console.log(err));
+    
+    setSelectedAddress(addresses[0]);
+  }, [])
+  
+
+  function onRemove( product ){
+    removeItem(product)
+    calculatePrice()
+    
+  }
+  function onAdd( product ){
+    addItem(product)
+    calculatePrice()
+    console.log(selectedAddress.title)
+  }
+
+  function calculatePrice(){
+    let totalPrice = 0
+    for (let i = 0; i < cartItems.length; i++){
+      totalPrice = totalPrice + cartItems[i].price * cartItems[i].cartQuantity
+    }
+    setCost(totalPrice)
+  }
+
+  function pay(){
+
+  }
+
   function showProduct(){
+    
     for (let i = 0; i < cartItems.length; i++) {
-        totalCost += cartItems[i].price;
+
         rows.push(  <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
         <MDBCol md="2" lg="2" xl="2">
           <MDBCardImage
@@ -38,13 +90,13 @@ function Basket({cartItems, countItems}) {
         <MDBCol md="2" lg="2" xl="2" className="d-flex align-items-center">
       
         <MDBTypography tag="h6" className="mb-0">
-         Quantity: {cartItems[i].quantity}
+         Quantity: {cartItems[i].cartQuantity}
           </MDBTypography>
     
         </MDBCol>
         <MDBCol md="3" lg="2" xl="2" className="text-end">
           <MDBTypography tag="h6" className="mb-0">
-          {cartItems[i].price}$
+          {cartItems[i].price * cartItems[i].cartQuantity}$
           </MDBTypography>
         </MDBCol>
         <MDBCol md="1" lg="1" xl="1" className="text-end">
@@ -53,7 +105,12 @@ function Basket({cartItems, countItems}) {
           </a>
         </MDBCol>
         <hr className="my-4" />
-      
+        <Button variant='success' onClick={() => (onAdd(cartItems[i]))}>
+          ADD
+        </Button>
+        <Button variant='danger' onClick={() => (onRemove(cartItems[i]))}>
+          REMOVE
+        </Button>
       </MDBRow> 
       )
     }
@@ -62,9 +119,16 @@ function Basket({cartItems, countItems}) {
 }
   return (
     <Container fluid = "true">
+     
       <Header/>
+      
       <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
         <MDBContainer className="py-5 h-100">
+        <div className="mb-4 pb-2">
+          <select onChange={(e) => onChangeOfAddress(e)}  className="select p-2 rounded bg-grey" style={{ width: "100%" }}>
+            {addresses.map((address) => <option value={address}>{address.title}</option>)}
+          </select>
+        </div>
           <MDBRow className="justify-content-center align-items-center h-100">
             <MDBCol size="12">
               <MDBCard className="card-registration card-registration-2" style={{ borderRadius: "15px" }}>
@@ -175,10 +239,10 @@ function Basket({cartItems, countItems}) {
                           <MDBTypography tag="h5" className="text-uppercase">
                             Total price
                           </MDBTypography>
-                          <MDBTypography tag="h5">$ {totalCost}</MDBTypography>
+                          <MDBTypography tag="h5">$ {cost}</MDBTypography>
                         </div>
       
-                        <Button variant="dark" size="lg">
+                        <Button variant="dark" size="lg" onClick={pay()}>
                           Purchase now
                         </Button>
                       </div>

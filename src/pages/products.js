@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-function Products({cartItems,setCartItems,countItems,setCountItems}){
+function Products({cartItems,setCartItems, addItem, removeItem}){
 
     let productType = localStorage.getItem("productType");
     let title = localStorage.getItem("productTitle");
@@ -51,23 +51,8 @@ function Products({cartItems,setCartItems,countItems,setCountItems}){
        
     }
     
-    function addItem(product){
-      const exist = cartItems.find((x) => x.id === product.id);
-      if (exist) {
-        setCartItems(
-          cartItems.map((x) =>
-            x.id === product.id ? { ...exist, quantity: exist.quantity + 1 } : x
-          )
-        );
-      } else {
-        setCartItems([...cartItems, { ...product, quantity: 1 }]);
-      }
-      console.log(cartItems)
-    }
     
-    function asfp(){
-        navigate('/mycart')
-    }
+    
     return (
         <Container fluid = "true">
             <Header/>
