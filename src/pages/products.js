@@ -13,7 +13,7 @@ function Products(props){
     const [products, setProducts] = useState([])
     const rows = [];
     useEffect(() => {
-        fetch("http://localhost:8080/products/tv",{
+        fetch("http://localhost:8080/products/category/tv",{
           method : "GET",
           headers : {
               "Authorization": localStorage.getItem("tokenKey"),

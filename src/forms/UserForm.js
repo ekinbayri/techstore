@@ -42,13 +42,14 @@ function handleForm(){
   sendRequest()
 }
 function sendRequest() {
-  fetch("http://localhost:8080/user/" + localStorage.getItem("currentUser"),{
+  fetch("http://localhost:8080/user/",{
       method : "PUT",
       headers : {
           "Authorization": localStorage.getItem("tokenKey"),
           "Content-Type":"application/json"
       },
       body : JSON.stringify({
+          id: localStorage.getItem("currentUser"),
           name: name,
           surname : surname,
           phoneNumber: phoneNumber,

@@ -19,7 +19,7 @@ export default function ManageUser() {
         .then((result) =>  setUsers(result))
         .catch((err) => console.log(err)) 
       }, [])
-      function otuzbir(){
+      function user(){
         for (let i = 0; i < users.length; i++) {
             console.log(users[i].id + " " + users[i].name)
             rows.push(<MDBContainer >
@@ -76,6 +76,6 @@ export default function ManageUser() {
         return <Row>{rows}</Row>;
     }
   return (
-    otuzbir()
+    user()
   )
 }

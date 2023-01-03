@@ -14,7 +14,7 @@ function Logs() {
        
     })
       .then((res) => res.json())
-      .then((result) =>  setLogs(result))
+      .then((result) =>  console.log(result))
       .catch((err) => console.log(err)) 
     }, [])
     
@@ -54,7 +54,7 @@ function Logs() {
       </thead>
 
       <tbody>
-        {logs.map((log) => <LogComponent log = {log}/>)}
+      {logs.map((log) => <LogComponent log = {log}/>)}
       </tbody>
       
     </Table>
