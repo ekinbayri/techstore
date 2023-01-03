@@ -15,7 +15,7 @@ import {
   } from "mdb-react-ui-kit";
 import Header from '../components/Header';
 import { Link, useNavigate } from 'react-router-dom';
-function Basket({cartItems, setCartItems}) {
+function Basket({cartItems, countItems}) {
   const rows = [];
   let totalCost = 0;
   let navigate = useNavigate();
@@ -38,7 +38,9 @@ function Basket({cartItems, setCartItems}) {
         </MDBCol>
         <MDBCol md="2" lg="2" xl="2" className="d-flex align-items-center">
       
-       
+        <MDBTypography tag="h6" className="mb-0">
+         Quantity: {countItems[i].quantity}
+          </MDBTypography>
     
         </MDBCol>
         <MDBCol md="3" lg="2" xl="2" className="text-end">

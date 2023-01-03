@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-function Products({cartItems,setCartItems}){
+function Products({cartItems,setCartItems,countItems,setCountItems}){
 
     let productType = localStorage.getItem("productType");
     let title = localStorage.getItem("productTitle");
@@ -31,6 +31,8 @@ function Products({cartItems,setCartItems}){
         .catch((err) => console.log(err)) 
       }, [])
 
+
+
     function showProduct(){
         for (let i = 0; i < products.length; i++) {
             rows.push(<Col>  <Card style={{ width: '18rem'}}>
@@ -50,8 +52,21 @@ function Products({cartItems,setCartItems}){
     }
     function addItem(product){
         console.log(cartItems)
-        setCartItems(item => [...item,product])
+        console.log(countItems)
+        if(cartItems.includes(product)){
+           if(cartItems[cartItems.indexOf(product)].quantity == countItems[countItems.indexOf(product)].quantity){
+            countItems[countItems.indexOf(product)].quantity = 1;
+           }
+            cartItems[cartItems.indexOf(product)].quantity = cartItems[cartItems.indexOf(product)].quantity + 1;
+            countItems[countItems.indexOf(product)].quantity= countItems[countItems.indexOf(product)].quantity + 1;
+        }
+        else{
+            setCartItems(item => [...item,product])
+            setCountItems(item => [...item,product])
+        }
         console.log(cartItems)
+        console.log(countItems)
+       
         
 
     }

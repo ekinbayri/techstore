@@ -20,7 +20,8 @@ import ManageUser from './pages/ManageUser';
 function App() {
 
   const [cartItems, setCartItems] = useState([]);
-  
+  const [countItems,setCountItems] = useState([]);
+
 
   return(
     <BrowserRouter>
@@ -44,8 +45,8 @@ function App() {
       </Route>
 
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
-      <Route path = "/products" element = {<Products cartItems = {cartItems} setCartItems = {setCartItems}/>} />
-      <Route path = "/mycart" element = {<Basket cartItems={cartItems} setCartItems = {setCartItems} />} />
+      <Route path = "/products" element = {<Products cartItems = {cartItems} setCartItems = {setCartItems} countItems = {countItems} setCountItems = {setCountItems}/>} />
+      <Route path = "/mycart" element = {<Basket cartItems={cartItems} countItems = {countItems} />} />
     </Routes>
   </BrowserRouter>
   )
