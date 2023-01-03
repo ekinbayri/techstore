@@ -50,33 +50,21 @@ function Products({cartItems,setCartItems,countItems,setCountItems}){
         return <Row>{rows}</Row>;
        
     }
+    
     function addItem(product){
-        console.log(product)
-        if(cartItems.includes(product)){
-            let newArr = structuredClone(countItems);
-            let newArr2 = structuredClone(cartItems);
-            
-           if(cartItems[cartItems.indexOf(product)].quantity === countItems[countItems.indexOf(product)].quantity){
-            newArr[countItems.indexOf(product)].quantity = 0;
-           }
-
-            newArr[countItems.indexOf(product)].quantity++;
-            newArr2[cartItems.indexOf(product)].quantity++;
-            console.log(newArr)
-            console.log(newArr2)
-            setCountItems(newArr)
-            setCartItems(newArr2)
-        }
-        else{
-            setCartItems(item => [...item,product])
-            setCountItems(item => [...item,product])
-        }
-        console.log(cartItems)
-        console.log(countItems)
-       
-        
-
+      const exist = cartItems.find((x) => x.id === product.id);
+      if (exist) {
+        setCartItems(
+          cartItems.map((x) =>
+            x.id === product.id ? { ...exist, quantity: exist.quantity + 1 } : x
+          )
+        );
+      } else {
+        setCartItems([...cartItems, { ...product, quantity: 1 }]);
+      }
+      console.log(cartItems)
     }
+    
     function asfp(){
         navigate('/mycart')
     }
