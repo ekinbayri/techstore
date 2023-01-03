@@ -60,8 +60,8 @@ function Products({cartItems,setCartItems,countItems,setCountItems}){
             newArr[countItems.indexOf(product)].quantity = 0;
            }
 
-            newArr[countItems.indexOf(product)].quantity += 1;
-            newArr2[cartItems.indexOf(product)].quantity += 1;
+            newArr[countItems.indexOf(product)].quantity++;
+            newArr2[cartItems.indexOf(product)].quantity++;
             console.log(newArr)
             console.log(newArr2)
             setCountItems(newArr)
