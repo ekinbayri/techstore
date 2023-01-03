@@ -3,11 +3,13 @@ import { Button, Container } from 'react-bootstrap'
 import ProductForm from '../forms/ProductForm'
 import DeleteProductForm from '../forms/DeleteProductForm'
 import EditProductForm from '../forms/EditProductForm'
+import { useNavigate } from 'react-router-dom'
 
 function ManageProduct() {
     const [show,setShow] = useState(false)
     const [deleteItem,setDelete] = useState(false)
     const [edit,setEdit] = useState(false)
+    let navigate = useNavigate()
     function handleShow(){
       setShow(!show)
     }
@@ -31,12 +33,10 @@ function ManageProduct() {
 
   return (
     <Container fluid = "true">
-            <Button variant="outline-primary"  className = "buttontest"  onClick={handleShow}>Add product</Button>
-            <Button variant="outline-primary"  className = "buttontest"  onClick={handleDelete}>Delete product</Button>
-            <Button variant="outline-primary"  className = "buttontest"  onClick={handleEdit}>Edit product</Button>
-            { show ? handleProduct() : null }
-            { deleteItem ? handleProductDeleteForm() : null }
-            { edit ? handleEditForm() : null }
+            <Button variant="outline-primary"  className = "asdf2"  onClick={() => navigate('addform')}>Add product</Button>
+            <Button variant="outline-primary"  className = "asdf2"  onClick={() => navigate('deleteform')}>Delete product</Button>
+            <Button variant="outline-primary"  className = "asdf2"  onClick={() => navigate('editform')}>Edit product</Button>
+          
     </Container>
    
    
