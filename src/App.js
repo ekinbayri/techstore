@@ -17,7 +17,7 @@ import UserDetails from './pages/UserDetails';
 import Logs from './pages/Logs';
 import UserForm from './forms/UserForm';
 import ManageUser from './pages/ManageUser';
-import EditProductPage from './pages/EditProductPage';
+
 function App() {
 
   const [cartItems, setCartItems] = useState([]);
@@ -43,7 +43,6 @@ function App() {
         <Route path = "productmanagement" element = {<ManageProduct/>}/>
         <Route path = "logs" element = {<Logs/>}/>
         <Route path = "manageuser" element = {<ManageUser/>} />
-        <Route path = "editproduct" element = {<EditProductPage/>} />
       </Route>
 
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
 import {
-  MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
@@ -39,7 +38,7 @@ function Basket({cartItems, countItems}) {
         <MDBCol md="2" lg="2" xl="2" className="d-flex align-items-center">
       
         <MDBTypography tag="h6" className="mb-0">
-         Quantity: {countItems[i].quantity}
+         Quantity: {cartItems[i].quantity}
           </MDBTypography>
     
         </MDBCol>
