@@ -51,14 +51,21 @@ function Products({cartItems,setCartItems,countItems,setCountItems}){
        
     }
     function addItem(product){
-        console.log(cartItems)
-        console.log(countItems)
+        console.log(product)
         if(cartItems.includes(product)){
-           if(cartItems[cartItems.indexOf(product)].quantity == countItems[countItems.indexOf(product)].quantity){
-            countItems[countItems.indexOf(product)].quantity = 1;
+            let newArr = structuredClone(countItems);
+            let newArr2 = structuredClone(cartItems);
+            
+           if(cartItems[cartItems.indexOf(product)].quantity === countItems[countItems.indexOf(product)].quantity){
+            newArr[countItems.indexOf(product)].quantity = 0;
            }
-            cartItems[cartItems.indexOf(product)].quantity = cartItems[cartItems.indexOf(product)].quantity + 1;
-            countItems[countItems.indexOf(product)].quantity= countItems[countItems.indexOf(product)].quantity + 1;
+
+            newArr[countItems.indexOf(product)].quantity += 1;
+            newArr2[cartItems.indexOf(product)].quantity += 1;
+            console.log(newArr)
+            console.log(newArr2)
+            setCountItems(newArr)
+            setCartItems(newArr2)
         }
         else{
             setCartItems(item => [...item,product])
