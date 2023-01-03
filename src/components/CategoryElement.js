@@ -33,19 +33,19 @@ function Categories() {
   return (
     <Nav className="justify-content-center" fill variant="tabs"
       activeKey="/home"
-      onSelect={(selectedKey) => {localStorage.setItem("productType",selectedKey); navigate("/products")}}
+      onSelect={(selectedKey) => {localStorage.setItem("productType",selectedKey); localStorage.setItem("productTitle",selectedKey); navigate("/products")}}
     >
       <Nav.Item onMouseOver={MouseOver} onMouseOut={MouseOut}>
-        <Nav.Link eventKey = "Smartphones" style = {{color : "black"}}>SmartPhones</Nav.Link>
+        <Nav.Link eventKey = "smartphone" style = {{color : "black"}}>SmartPhones</Nav.Link>
       </Nav.Item>
       <Nav.Item onMouseOver={MouseOver} onMouseOut={MouseOut}>
-        <Nav.Link eventKey="Laptops" style = {{color : "black"}}>Laptops</Nav.Link>
+        <Nav.Link eventKey="laptop" style = {{color : "black"}}>Laptops</Nav.Link>
       </Nav.Item>
       <Nav.Item onMouseOver={MouseOver} onMouseOut={MouseOut}>
-        <Nav.Link eventKey="Tv" style = {{color : "black"}}>Tv</Nav.Link>
+        <Nav.Link eventKey="tv" style = {{color : "black"}}>Tv</Nav.Link>
       </Nav.Item>
       <Nav.Item onMouseOver={MouseOver} onMouseOut={MouseOut}>
-        <Nav.Link eventKey="House Electronics" style = {{color : "black"}}>House Electronics</Nav.Link>
+        <Nav.Link eventKey="houseelectronics" style = {{color : "black"}}>House Electronics</Nav.Link>
       </Nav.Item>
     </Nav>
   );

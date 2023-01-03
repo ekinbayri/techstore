@@ -5,15 +5,20 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect, useState } from "react";
+import { Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-function Products(props){
-    const { onAdd, onRemove } = props;
+function Products({cartItems,setCartItems}){
+
     let productType = localStorage.getItem("productType");
-    let img = localStorage.getItem("img");
+    let title = localStorage.getItem("productTitle");
+    let navigate = useNavigate();
     const [products, setProducts] = useState([])
+    
     const rows = [];
+
     useEffect(() => {
-        fetch("http://localhost:8080/products/category/tv",{
+        fetch("http://localhost:8080/products/category/" + productType,{
           method : "GET",
           headers : {
               "Authorization": localStorage.getItem("tokenKey"),
@@ -28,23 +33,37 @@ function Products(props){
 
     function showProduct(){
         for (let i = 0; i < products.length; i++) {
-            return <Col> <Productview img = 'tv' cardTitle = {products[i].name} cardText = {products[i].description} buttonText = 'Add to cart' onAdd= {onAdd} onRemove= {onRemove}/> </Col>
+            rows.push(<Col>  <Card style={{ width: '18rem'}}>
+            <Card.Img variant="top" src= {products[i].photo} height = {186} />
+            <Card.Body>
+              <Card.Title>{products[i].name}</Card.Title>
+              <Card.Text>
+                {products[i].description}
+              </Card.Text>
+              <Button variant="primary" onClick = {() => (addItem(products[i]))}>Add to cart</Button>
+            </Card.Body>
+          </Card>        
+          </Col>)
         }
+        return <Row>{rows}</Row>;
        
+    }
+    function addItem(product){
+        console.log(cartItems)
+        setCartItems(item => [...item,product])
+        console.log(cartItems)
+        
+
+    }
+    function asfp(){
+        navigate('/mycart')
     }
     return (
         <Container fluid = "true">
             <Header/>
-            <h3>{productType}</h3>
-             <Row sm = {2} md= {3} xl = {6} lg = {4} >
+            <h3>{title}</h3>        
                {showProduct()}
-          
-                
-
-            </Row> 
-           
-            
-
+                                 
         </Container>
     
     );

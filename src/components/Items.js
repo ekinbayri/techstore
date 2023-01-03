@@ -6,10 +6,10 @@ function Items() {
   
   return (
     <ListGroup horizontal>
-       <ListGroup.Item><CardView img = "house" cardTitle = 'House Electronics' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products'/></ListGroup.Item>
-      <ListGroup.Item><CardView img = "phone" cardTitle = 'SmartPhones' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products'/></ListGroup.Item>
-      <ListGroup.Item><CardView img = "laptop" cardTitle = 'Laptops' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products' /></ListGroup.Item>
-      <ListGroup.Item><CardView img = "tv" cardTitle = 'Tv' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products' /> </ListGroup.Item>
+       <ListGroup.Item><CardView img = "house" cardTitle = 'House Electronics' productType='houseelectronic' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products'/></ListGroup.Item>
+      <ListGroup.Item><CardView img = "phone" cardTitle = 'SmartPhones' productType='smartphone' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products'/></ListGroup.Item>
+      <ListGroup.Item><CardView img = "laptop" cardTitle = 'Laptops' productType='laptop' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products' /></ListGroup.Item>
+      <ListGroup.Item><CardView img = "tv" cardTitle = 'Tv' productType='tv' cardText = 'Default text' buttonText = 'Check products' buttonLink= '/products' /> </ListGroup.Item>
      
     </ListGroup>
   );

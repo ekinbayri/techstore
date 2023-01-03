@@ -17,14 +17,14 @@ import {
     MDBListGroupItem,
     MDBInput
   } from 'mdb-react-ui-kit';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 function UserForm() {
   const [name,setName] = useState("")
   const [surname,setSurname] = useState("")
   const [phoneNumber,setPhoneNumber] = useState("")
   const [email,setEmail] = useState("")
- 
+  let navigate = useNavigate();
   function handleName (value){
     setName(value)
 }
@@ -40,6 +40,7 @@ function handleEmail(value){
 
 function handleForm(){
   sendRequest()
+  
 }
 function sendRequest() {
   fetch("http://localhost:8080/user/",{
@@ -56,8 +57,7 @@ function sendRequest() {
           email: email,
       })
   })
-  .then((res) => res.json())
-  .then((result) =>  console.log(result))
+  .then(navigate("/profile"))
   .catch((err) => console.log(err))
 }
   return (
