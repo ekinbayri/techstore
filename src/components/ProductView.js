@@ -2,16 +2,7 @@ import React from 'react'
 
 function ProductView(props) {
     const { cardTitle, cardText, buttonText, onAdd, onRemove } = props;
-    const  asdf = JSON.stringify({
-        cardTitle: cardTitle,
-        passwcord: password,
-
-    });
-    asdf.cardTitle = cardTitle;
-    asdf.cardText = cardText;
-    function sendInfo(){
-
-    }
+    
   return (
     <Card style={{ width: '18rem'}}>
     <Card.Img variant="top" src={`../img/${img}.jpg`} height = {186} />

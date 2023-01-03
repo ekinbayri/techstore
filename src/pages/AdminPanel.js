@@ -22,7 +22,7 @@ function AdminPanel() {
          <Link to ="logs"><Button variant="outline-primary"  className = "buttontest">Manage logs</Button></Link>
         </Nav.Item>
         <Nav.Item>
-      <Button variant="outline-primary"  className = "buttontest">Manage users</Button>
+        <Link to ="manageuser"><Button variant="outline-primary"  className = "buttontest">Manage users</Button></Link>
         </Nav.Item>
         <Nav.Item>
         <Link to ="productmanagement"><Button variant="outline-primary"  className = "buttontest">Manage products</Button></Link>

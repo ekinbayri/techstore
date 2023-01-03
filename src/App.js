@@ -16,6 +16,7 @@ import UserDetails from './pages/UserDetails';
 
 import Logs from './pages/Logs';
 import UserForm from './forms/UserForm';
+import ManageUser from './pages/ManageUser';
 function App() {
 
   const [cartItems, setCartItems] = useState([]);
@@ -52,18 +53,20 @@ function App() {
       <Route index element={ <Index/> }/>
       
       <Route path = "/profile" element = {<Profile/>}>
+        <Route path = "addresses" element = {<Addresses/>}/>
+        <Route path = "orders" element = {<Orders/>} />
+        <Route path = "userdetails" element = {<UserDetails/>} />
+        <Route path = "userform" element = {<UserForm/>} />
+      </Route>
 
-      <Route path = "addresses" element = {<Addresses/>}/>
-      <Route path = "orders" element = {<Orders/>} />
-      <Route path = "userdetails" element = {<UserDetails/>} />
-      <Route path = "userform" element = {<UserForm/>} />
-      </Route>
-      
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
+
       <Route path =  "/adminpanel" element = {<AdminPanel/>}>
-      <Route path = "productmanagement" element = {<ManageProduct/>}/>
-      <Route path = "logs" element = {<Logs/>}/>
+        <Route path = "productmanagement" element = {<ManageProduct/>}/>
+        <Route path = "logs" element = {<Logs/>}/>
+        <Route path = "manageuser" element = {<ManageUser/>} />
       </Route>
+
       <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
       <Route path = "/products" element = {<Products onAdd={onAdd} onRemove={onRemove}/>} />
       <Route path = "/mycart" element = {<Basket cartItems={cartItems} onAdd={onAdd} onRemove={onRemove}/>} />
