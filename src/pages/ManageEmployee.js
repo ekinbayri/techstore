@@ -41,7 +41,7 @@ function ManageEmployee() {
                       <MDBRow className="g-0">
                         <MDBCol md="4" className="gradient-custom text-center text-gray"
                           style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
-                          <Button style = {{marginTop:'100px',padding:'40px'}} variant = 'outline-danger' onClick={() => banEmployee(employees[i])}>Ban User </Button>
+                          <Button style = {{marginTop:'100px',padding:'40px'}} variant = 'outline-danger' onClick={() => banEmployee(employees[i])}>Fire Employee </Button>
                         </MDBCol>
                         <MDBCol md="8">
                           <MDBCardBody className="p-4">
@@ -53,7 +53,7 @@ function ManageEmployee() {
                                 <MDBCardText className="text-muted">{employees[i].name + " " + employees[i].surname}</MDBCardText>
                               </MDBCol>
                               <MDBCol size="6" className="mb-3">
-                                <MDBTypography tag="h6">User Id</MDBTypography>
+                                <MDBTypography tag="h6">Employee Id</MDBTypography>
                                 <MDBCardText className="text-muted">{employees[i].id}</MDBCardText>
                               </MDBCol>
                             </MDBRow>

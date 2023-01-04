@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import {
-  MDBCard,
-  MDBCardBody,
+  
   MDBCardImage,
   MDBCol,
-  MDBContainer,
+  
   MDBIcon,
-  MDBInput,
+ 
   MDBRow,
   MDBTypography,
-  MDBCardText,
+ 
   } from "mdb-react-ui-kit";
-import { Button, Col, Container, InputGroup, Row } from 'react-bootstrap';
-import { Form, Link, useNavigate } from 'react-router-dom';
+import { Button, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import ProductUpdateForm from '../forms/ProductUpdateForm';
 
 

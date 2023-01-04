@@ -22,6 +22,7 @@ import DeleteProductForm from './forms/DeleteProductForm';
 import ProductForm from './forms/ProductForm';
 import ManageEmployee from './pages/ManageEmployee';
 import ManageOrder from './pages/ManageOrder';
+import Employee from './pages/Employee';
 
 
 function App() {
@@ -70,17 +71,18 @@ function App() {
       <Route path = "login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
 
       <Route path =  "/adminpanel" element = {<AdminPanel/>}>
-        <Route path = "productmanagement" element = {<ManageProduct/>}>
-         
-          
-        </Route>
-        
+        <Route path = "productmanagement" element = {<ManageProduct/>}/>
+
         <Route path = "logs" element = {<Logs/>}/>
         <Route path = "manageuser" element = {<ManageUser/>} />
         <Route path = "manageemployee" element = {<ManageEmployee/>} />
         <Route path = "manageorder" element = {<ManageOrder/>} />
       
       </Route>
+      <Route path = "/employeepanel" element = {<Employee/>}/>
+
+
+
       <Route path = "/adminpanel/productmanagement/deleteform" element = {<DeleteProductForm/>}/>
       <Route path = "/adminpanel/productmanagement/editform" element = {<EditProductForm/>}/>
       <Route path = "/adminpanel/productmanagement/addform" element = {<ProductForm/>}/>

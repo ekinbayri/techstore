@@ -39,6 +39,9 @@ function Login() {
                        if(result.role == "admin"){
                         navigate("/adminpanel");
                        }
+                       else if(result.role == "employee"){
+                        navigate("/employeepanel");
+                       }
                        else{
                        navigate(0);
                        }
