@@ -21,12 +21,8 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
   const [cost, setCost] = useState(0)
   const [selectedAddress, setSelectedAddress] = useState()
   const [addresses, setAddresses] = useState([])
-
-  function onChangeOfAddress(e) {
-    const val = e.target.value;
-    setSelectedAddress(val);
-    console.log(JSON.stringify(val))
-  };
+  const [orderList, setOrderList] = useState([])
+  
 
   useEffect(() => {
     calculatePrice()
@@ -42,7 +38,7 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
     .then((result) =>  setAddresses(result))
     .catch((err) => console.log(err));
     
-    setSelectedAddress(addresses[0]);
+
   }, [])
   
 
@@ -54,7 +50,6 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
   function onAdd( product ){
     addItem(product)
     calculatePrice()
-    console.log(selectedAddress.title)
   }
 
   function calculatePrice(){
@@ -66,6 +61,25 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
   }
 
   function pay(){
+    cartItems.map((product) => setOrderList([...orderList, {productId: product.id, quantity: product.cartQuantity}]))
+    console.log(selectedAddress)
+    console.log(orderList)
+    fetch("http://localhost:8080/",{
+      method : "POST",
+      
+      headers : {
+          "Authorization": localStorage.getItem("tokenKey"),
+          "Content-Type":"application/json"
+      },
+      body : JSON.stringify({
+          addressId: selectedAddress,
+          orderList: orderList
+
+      }),
+     
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
 
   }
 
@@ -118,9 +132,7 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
     return <Row>{rows}</Row>;
    
 }
-function handleAddress(address){
-    console.log(address.title);
-}
+
   return (
     <Container fluid = "true">
      
@@ -171,7 +183,7 @@ function handleAddress(address){
                         </MDBTypography>
 
                         <hr className="my-4" />
-                        <Nav fill variant="tabs"  onSelect={(selectedKey) => {console.log(selectedKey)}}>
+                        <Nav fill variant="tabs"  onSelect={(selectedKey) => {setSelectedAddress(selectedKey)}}>
                           <Nav.Item >
                           {addresses.map((address) =>  <Nav.Link eventKey = {address.id} style = {{color : "black"}}>{address.title}</Nav.Link>)}
                           
@@ -252,7 +264,7 @@ function handleAddress(address){
                           <MDBTypography tag="h5">$ {cost}</MDBTypography>
                         </div>
       
-                        <Button variant="dark" size="lg" onClick={pay()}>
+                        <Button variant="dark" size="lg" onClick={() => pay()}>
                           Purchase now
                         </Button>
                       </div>
