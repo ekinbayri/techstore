@@ -68,7 +68,7 @@ function App() {
       <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
 
       <Route path =  "/adminpanel" element = {<AdminPanel/>}>
-        <Route path = "/productmanagement" element = {<ManageProduct/>}>
+        <Route path = "productmanagement" element = {<ManageProduct/>}>
          
           <Route path = "deleteform" element = {<DeleteProductForm/>}/>
           <Route path = "editform" element = {<EditProductForm/>}/>

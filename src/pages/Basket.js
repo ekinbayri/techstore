@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Container, Form, InputGroup, Row } from 'react-bootstrap';
+import { Button, Container, Dropdown, Form, InputGroup, Nav, Row } from 'react-bootstrap';
 import {
   MDBCard,
   MDBCardBody,
@@ -22,10 +22,10 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
   const [selectedAddress, setSelectedAddress] = useState()
   const [addresses, setAddresses] = useState([])
 
-  const onChangeOfAddress = (e) => {
+  function onChangeOfAddress(e) {
     const val = e.target.value;
-    e.preventDefault();
     setSelectedAddress(val);
+    console.log(JSON.stringify(val))
   };
 
   useEffect(() => {
@@ -105,17 +105,21 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
           </a>
         </MDBCol>
         <hr className="my-4" />
-        <Button variant='success' onClick={() => (onAdd(cartItems[i]))}>
-          ADD
-        </Button>
-        <Button variant='danger' onClick={() => (onRemove(cartItems[i]))}>
-          REMOVE
-        </Button>
+        <Button variant='secondary'  onClick={() => (onAdd(cartItems[i]))}> ADD </Button>
+          
+         
+        <Button variant='dark' onClick={() => (onRemove(cartItems[i]))}>  REMOVE  </Button>
+        
+       
+        <hr className="my-4" />
       </MDBRow> 
       )
     }
     return <Row>{rows}</Row>;
    
+}
+function handleAddress(address){
+    console.log(address.title);
 }
   return (
     <Container fluid = "true">
@@ -125,9 +129,9 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
       <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
         <MDBContainer className="py-5 h-100">
         <div className="mb-4 pb-2">
-          <select onChange={(e) => onChangeOfAddress(e)}  className="select p-2 rounded bg-grey" style={{ width: "100%" }}>
-            {addresses.map((address) => <option value={address}>{address.title}</option>)}
-          </select>
+        
+
+         
         </div>
           <MDBRow className="justify-content-center align-items-center h-100">
             <MDBCol size="12">
@@ -163,11 +167,17 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
                     <MDBCol lg="4" className="bg-grey">
                       <div className="p-5">
                         <MDBTypography tag="h3" className="fw-bold mb-5 mt-2 pt-1">
-                          Summary
+                          My addresses
                         </MDBTypography>
-      
+
                         <hr className="my-4" />
-      
+                        <Nav fill variant="tabs"  onSelect={(selectedKey) => {console.log(selectedKey)}}>
+                          <Nav.Item >
+                          {addresses.map((address) =>  <Nav.Link eventKey = {address.id} style = {{color : "black"}}>{address.title}</Nav.Link>)}
+                          
+                          </Nav.Item>
+                        </Nav>
+                        <hr className="my-4" />
                         <div className="d-flex justify-content-between mb-4">
                           <MDBTypography tag="h5" className="text-uppercase">
                           {cartItems.length} items 
