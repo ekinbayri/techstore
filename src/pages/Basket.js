@@ -59,12 +59,15 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
     }
     setCost(totalPrice)
   }
-
-  function pay(){
+  async function tryAgainLaterBruh(){
     cartItems.map((product) => setOrderList([...orderList, {productId: product.id, quantity: product.cartQuantity}]))
+  }
+  async function pay(){
+    await tryAgainLaterBruh()
     console.log(selectedAddress)
     console.log(orderList)
-    fetch("http://localhost:8080/",{
+    console.log(cartItems)
+    await fetch("http://localhost:8080/",{
       method : "POST",
       
       headers : {
@@ -73,7 +76,7 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
       },
       body : JSON.stringify({
           addressId: selectedAddress,
-          orderList: orderList
+          orderList: orderList,
 
       }),
      
@@ -264,7 +267,7 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
                           <MDBTypography tag="h5">$ {cost}</MDBTypography>
                         </div>
       
-                        <Button variant="dark" size="lg" onClick={() => pay()}>
+                        <Button variant="dark" size="lg" onClick={pay}>
                           Purchase now
                         </Button>
                       </div>
