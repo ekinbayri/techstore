@@ -12,11 +12,13 @@ import {
   MDBCardText,
   } from "mdb-react-ui-kit";
 import { Button, Col, Container, InputGroup, Row } from 'react-bootstrap';
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, Link, useNavigate } from 'react-router-dom';
+import ProductForm from './ProductForm';
+import ProductUpdateForm from './ProductUpdateForm';
 function EditProductForm() {
   const [products, setProducts] = useState([])
   const [product, setProduct] = useState([])
-  const [show, setShow] = useState([])
+  const [show, setShow] = useState(false)
   const [name,setName] = useState("")
   const [category,setCategory] = useState("")
   const [price,setPrice] = useState(0)
@@ -89,6 +91,7 @@ function EditProductForm() {
           </a>
         </MDBCol>
         <hr className="my-4" />
+        {show ? <ProductUpdateForm productId={products[i].id} product={products[i]}></ProductUpdateForm> : null}
       
       </MDBRow> 
       )
@@ -151,6 +154,10 @@ function sendRequest() {
 
   return (
     <Container>
+        <Row>
+          <Link to="/adminpanel/productmanagement"><Button> Go Back</Button> </Link>
+        </Row>
+        
         {showProducts()}
     </Container>
     

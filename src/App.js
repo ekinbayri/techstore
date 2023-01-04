@@ -65,24 +65,24 @@ function App() {
         <Route path = "userform" element = {<UserForm/>} />
       </Route>
 
-      <Route path = "/login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
+      <Route path = "login" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Login/>} />
 
-      <Route path =  "/adminpanel" element = {<AdminPanel/>}>
-        <Route path = "/productmanagement" element = {<ManageProduct/>}>
+      <Route path =  "adminpanel" element = {<AdminPanel/>}>
+        <Route path = "productmanagement" element = {<ManageProduct/>}>
          
-          <Route path = "deleteform" element = {<DeleteProductForm/>}/>
-          <Route path = "editform" element = {<EditProductForm/>}/>
-          <Route path = "addform" element = {<ProductForm/>}/>
+          
         </Route>
         
         <Route path = "logs" element = {<Logs/>}/>
         <Route path = "manageuser" element = {<ManageUser/>} />
       
       </Route>
-
-      <Route  path = "/register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
-      <Route path = "/products" element = {<Products cartItems = {cartItems} setCartItems = {setCartItems} addItem = {addItem} removeItem = {removeItem}/>} />
-      <Route path = "/mycart" element = {<Basket cartItems={cartItems} setCartItems = {setCartItems} addItem = {addItem} removeItem = {removeItem}/>} />
+      <Route path = "/adminpanel/productmanagement/deleteform" element = {<DeleteProductForm/>}/>
+      <Route path = "/adminpanel/productmanagement/editform" element = {<EditProductForm/>}/>
+      <Route path = "/adminpanel/productmanagement/addform" element = {<ProductForm/>}/>
+      <Route  path = "register" element = {localStorage.getItem("currentUser") != null ? <Navigate to = "/"/>:<Register/>}/>
+      <Route path = "products" element = {<Products cartItems = {cartItems} setCartItems = {setCartItems} addItem = {addItem} removeItem = {removeItem}/>} />
+      <Route path = "mycart" element = {<Basket cartItems={cartItems} setCartItems = {setCartItems} addItem = {addItem} removeItem = {removeItem}/>} />
     </Routes>
   </BrowserRouter>
   )

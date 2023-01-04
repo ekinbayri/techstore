@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Table, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Form, Table, Button, Row } from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
 import ProductComponent from '../components/ProductComponent'
 
 function DeleteProductForm() {
@@ -9,7 +9,7 @@ function DeleteProductForm() {
   let navigate = useNavigate();
 
   function deleteRequest(){
-    fetch("http://localhost:8080/products/" + {productId},{
+    fetch("http://localhost:8080/products/" + productId,{
         method : "DELETE",
         headers : {
             "Authorization": localStorage.getItem("tokenKey"),
@@ -17,7 +17,7 @@ function DeleteProductForm() {
         },
         
     })
-    navigate(0);
+    navigate(0)
   }
 
   useEffect(() => {
@@ -35,6 +35,8 @@ function DeleteProductForm() {
 
   return (
     <div>
+      
+      
       <Form>
         <Form.Group className="mb-3">
           <Form.Label>Enter product id</Form.Label>
@@ -42,8 +44,11 @@ function DeleteProductForm() {
           <Form.Text className="text-muted">
           </Form.Text>
         </Form.Group>
-
-        <Button variant="danger" type="submit" onClick={() => deleteRequest}>
+        <Row>
+          <Link to="/adminpanel/productmanagement"><Button> Go Back</Button> </Link>
+        </Row>
+        
+        <Button variant="danger" onClick={() => deleteRequest()}>
           DELETE
         </Button>
 

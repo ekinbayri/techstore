@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Row, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-
-function ProductForm() {
-    const [name,setName] = useState("")
-    const [category,setCategory] = useState("")
-    const [price,setPrice] = useState(0)
-    const [quantity,setQuantity] = useState(1)
-    const [description,setDescription] = useState("")
-    const [img,setImg] = useState(null)
-    {/*const img2 = Buffer.toString(image);*/}
+function ProductUpdateForm({productId, product}) {
+    const [id, setId] = useState(productId)
+    const [name,setName] = useState(product.name)
+    const [category,setCategory] = useState(product.category)
+    const [price,setPrice] = useState(product.price)
+    const [quantity,setQuantity] = useState(product.quantity)
+    const [description,setDescription] = useState(product.description)
+    const [img,setImg] = useState(product.photo)
 
     function handleName (value){
         setName(value)
@@ -39,14 +38,17 @@ function ProductForm() {
     function handleForm(){
         sendRequest();
     }
+    
+    
     function sendRequest() {
-        fetch("http://localhost:8080/products",{
-            method : "POST",
+        fetch("http://localhost:8080/products/",{
+            method : "PUT",
             headers : {
                 "Authorization": localStorage.getItem("tokenKey"),
                 "Content-Type":"application/json"
             },
             body : JSON.stringify({
+                id: id,
                 name: name,
                 category : category,
                 price: price,
@@ -64,13 +66,13 @@ function ProductForm() {
     
     <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Name</Form.Label>
-        <Form.Control placeholder="Name of product" onChange={(e) => handleName(e.target.value)}/>
+        <Form.Control placeholder={name} onChange={(e) => handleName(e.target.value)}/>
       </Form.Group>
 
 
       <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Description</Form.Label>
-        <Form.Control placeholder="1234 Main St" onChange={(e) => handleDescription(e.target.value)}/>
+        <Form.Control placeholder={description} onChange={(e) => handleDescription(e.target.value)}/>
       </Form.Group>
 
      
@@ -78,17 +80,17 @@ function ProductForm() {
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridCity">
           <Form.Label>Category</Form.Label>
-          <Form.Control onChange={(e) => handleCategory(e.target.value)}/>
+          <Form.Control placeholder={category} onChange={(e) => handleCategory(e.target.value)}/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridState">
           <Form.Label>Price</Form.Label>
-          <Form.Control onChange={(e) => handlePrice(parseInt(e.target.value))}/>
+          <Form.Control placeholder={price} onChange={(e) => handlePrice(parseInt(e.target.value))}/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridZip">
           <Form.Label>Quantity</Form.Label>
-          <Form.Control onChange={(e) => handleQuantity(parseInt(e.target.value))}/>
+          <Form.Control placeholder={quantity} onChange={(e) => handleQuantity(parseInt(e.target.value))}/>
         </Form.Group>
       </Row>
 
@@ -100,11 +102,9 @@ function ProductForm() {
       <Button variant="primary" onClick={handleForm}>
         Submit
       </Button>
-      <Row>
-          <Link to="/adminpanel/productmanagement"><Button> Go Back</Button> </Link>
-        </Row>
+      
     </Form>
   )
 }
 
-export default ProductForm
+export default ProductUpdateForm
