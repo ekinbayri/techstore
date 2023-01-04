@@ -185,7 +185,7 @@ function Basket({cartItems, setCartItems, addItem, removeItem}) {
                         <hr className="my-4" />
                         <Nav fill variant="tabs"  onSelect={(selectedKey) => {setSelectedAddress(selectedKey)}}>
                           <Nav.Item >
-                          {addresses.map((address) =>  <Nav.Link eventKey = {address.id} style = {{color : "black"}}>{address.title}</Nav.Link>)}
+                          {addresses.map((address) =>  <Nav.Link eventKey = {address.id} style = {{backgroundColor : "gray ",color:"white",borderRadius:"10px"}}>{address.title}</Nav.Link>)}
                           
                           </Nav.Item>
                         </Nav>

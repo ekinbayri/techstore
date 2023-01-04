@@ -13,13 +13,13 @@ import {
   } from "mdb-react-ui-kit";
 import { Button, Col, Container, InputGroup, Row } from 'react-bootstrap';
 import ProductUpdateForm from '../forms/ProductUpdateForm';
+import { Link } from 'react-router-dom';
 
 
 
 function Orders() {
     let rows = [];
-    const [products, setProducts] = useState([])
-    const [product, setProduct] = useState([])
+    const [orders, setOrders] = useState([])
     const [show, setShow] = useState(false)
 
 
@@ -27,60 +27,39 @@ function Orders() {
         fetch("http://localhost:8080/myOrders",{
           method : "GET",
           headers : {
+            "Authorization": localStorage.getItem("tokenKey"),
               "Content-Type":"application/json"
           },
   
       })
         .then((res) => res.json())
-        .then((result) =>  console.log(result))
+        .then((result) =>  setOrders(result))
         .catch((err) => console.log(err)) 
       }, [])
 
-      function showProducts(){
-        for (let i = 0; i < products.length; i++) {
+      function showOrders(){
+        console.log(orders)
+        console.log(orders[0].address)
+        for (let i = 0; i < orders.length; i++) {
             rows.push(<MDBRow className="mb-4 d-flex justify-content-between align-items-center">
-            <MDBCol md="2" lg="2" xl="2">
-              <MDBCardImage
-                src = {products[i].photo}
-                fluid className="rounded-3" alt="Cotton T-shirt" />
-            </MDBCol>
+          
             <MDBCol md="2" lg="2" xl="2">
             <MDBTypography tag="h6" className="text-black mb-0">
-               {products[i].name}
+               {orders[i].address}
               </MDBTypography>
               <MDBTypography tag="h6" className="text-muted">
-              {products[i].description}
+              {orders[i].date}
               </MDBTypography>
-              
+      
             </MDBCol>
-             <MDBCol md="2" lg="2" xl="2" >
-              <MDBTypography tag="h6" className="mb-0">
-              Category: {products[i].category}
-              </MDBTypography>
-            </MDBCol>
-    
-            <MDBCol md="2" lg="2" xl="2" className="d-flex align-items-center">
-          
-            <MDBTypography tag="h6" className="mb-0">
-             Quantity: {products[i].quantity}
-              </MDBTypography>
-        
-            </MDBCol>
-            <MDBCol md="3" lg="2" xl="2" >
-              <MDBTypography tag="h6" className="mb-0">
-              {products[i].price}$
-              </MDBTypography>
-            </MDBCol>
-              
-         
+                 
             <MDBCol md="1" lg="1" xl="1" className="text-end">
               <a href="#!" className="text-muted">
                 <MDBIcon fas icon="times" />
               </a>
             </MDBCol>
             <hr className="my-4" />
-            {show ? <ProductUpdateForm productId={products[i].id} product={products[i]}></ProductUpdateForm> : null}
-          
+    
           </MDBRow> 
           )
         }
@@ -89,13 +68,11 @@ function Orders() {
     }
 
     return (
-<Container fluid = "true">
-    
-    
-         {showProducts()}
-   
-    
-</Container>
+        <Container>
+        
+        
+        {showOrders()}
+    </Container>
      
     );
   }
