@@ -20,6 +20,8 @@ import ManageUser from './pages/ManageUser';
 import EditProductForm from './forms/EditProductForm';
 import DeleteProductForm from './forms/DeleteProductForm';
 import ProductForm from './forms/ProductForm';
+import ManageEmployee from './pages/ManageEmployee';
+import ManageOrder from './pages/ManageOrder';
 
 
 function App() {
@@ -75,6 +77,8 @@ function App() {
         
         <Route path = "logs" element = {<Logs/>}/>
         <Route path = "manageuser" element = {<ManageUser/>} />
+        <Route path = "manageemployee" element = {<ManageEmployee/>} />
+        <Route path = "manageorder" element = {<ManageOrder/>} />
       
       </Route>
       <Route path = "/adminpanel/productmanagement/deleteform" element = {<DeleteProductForm/>}/>

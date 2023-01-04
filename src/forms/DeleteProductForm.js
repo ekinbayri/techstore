@@ -39,18 +39,18 @@ function DeleteProductForm() {
       
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label>Enter product id</Form.Label>
+          <Form.Label className="mb-3"><h2>Enter product id</h2></Form.Label>
           <Form.Control placeholder="Enter id"  onChange={(e) => setproductId(e.target.value)}/>
           <Form.Text className="text-muted">
           </Form.Text>
         </Form.Group>
-        <Row>
+        <Row className='buttonAtt'>
           <Link to="/adminpanel/productmanagement"><Button> Go Back</Button> </Link>
         </Row>
-        
-        <Button variant="danger" onClick={() => deleteRequest()}>
-          DELETE
-        </Button>
+        <Row className='buttonAtt'>
+        <Button variant="danger" onClick={() => deleteRequest()}>Delete</Button>
+        </Row>
+       
 
       </Form>
       <Table responsive>

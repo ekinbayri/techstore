@@ -16,7 +16,7 @@ function AdminPanel() {
     <Card.Body>
     <Nav fill variant="tabs" defaultActiveKey="#first">
         <Nav.Item>
-        <Button variant="outline-primary"  className = "buttontest">Manage orders</Button>
+        <Link to ="manageorder"><Button variant="outline-primary"  className = "buttontest">Manage orders</Button></Link>
         </Nav.Item>
         <Nav.Item>
          <Link to ="logs"><Button variant="outline-primary"  className = "buttontest">Manage logs</Button></Link>
@@ -28,7 +28,7 @@ function AdminPanel() {
         <Link to ="productmanagement"><Button variant="outline-primary"  className = "buttontest">Manage products</Button></Link>
         </Nav.Item>
         <Nav.Item>
-      <Button variant="outline-primary"  className = "buttontest">Manage employees</Button>
+        <Link to ="manageemployee"><Button variant="outline-primary"  className = "buttontest">Manage employees</Button></Link>
         </Nav.Item>
       </Nav>
       

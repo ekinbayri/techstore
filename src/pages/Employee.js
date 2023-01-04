@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 function Employee() {
 
-    const [unshipped, setUnshipped] = uUeState([])
+    const [unshipped, setUnshipped] = UseState([])
 
   useEffect(() => {
     fetch("http://localhost:8080//unshipped/" + localStorage.getItem("currentUser"),{

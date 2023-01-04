@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Col, Row, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 function ProductForm() {
@@ -10,6 +10,7 @@ function ProductForm() {
     const [quantity,setQuantity] = useState(1)
     const [description,setDescription] = useState("")
     const [img,setImg] = useState(null)
+    let navigate = useNavigate()
     {/*const img2 = Buffer.toString(image);*/}
 
     function handleName (value){
@@ -38,6 +39,7 @@ function ProductForm() {
     }
     function handleForm(){
         sendRequest();
+        navigate("/adminpanel/productmanagement")
     }
     function sendRequest() {
         fetch("http://localhost:8080/products",{
@@ -61,7 +63,7 @@ function ProductForm() {
     }
   return (
     <Form>
-    
+    <h1>Add Product</h1>
     <Form.Group className="mb-3" controlId="formGridAddress1">
         <Form.Label>Name</Form.Label>
         <Form.Control placeholder="Name of product" onChange={(e) => handleName(e.target.value)}/>
@@ -97,11 +99,11 @@ function ProductForm() {
         <Form.Control type="file" onChange={(e) => handleImg(e.target.files[0])}/>
       </Form.Group>
         
-      <Button variant="primary" onClick={handleForm}>
+      <Button variant="primary" className = 'buttonAtt' onClick={handleForm}>
         Submit
       </Button>
-      <Row>
-          <Link to="/adminpanel/productmanagement"><Button> Go Back</Button> </Link>
+      <Row >
+          <Link to="/adminpanel/productmanagement"><Button className='buttonAtt'> Go Back</Button> </Link>
         </Row>
     </Form>
   )

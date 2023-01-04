@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Row, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function ProductUpdateForm({productId, product}) {
     const [id, setId] = useState(productId)
@@ -10,7 +10,7 @@ function ProductUpdateForm({productId, product}) {
     const [quantity,setQuantity] = useState(product.quantity)
     const [description,setDescription] = useState(product.description)
     const [img,setImg] = useState(product.photo)
-
+    let navigate = useNavigate();
     function handleName (value){
         setName(value)
     }
@@ -37,6 +37,7 @@ function ProductUpdateForm({productId, product}) {
     }
     function handleForm(){
         sendRequest();
+        navigate("/adminpanel/productmanagement")
     }
     
     

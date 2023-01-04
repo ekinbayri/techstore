@@ -13,21 +13,22 @@ import {
   } from "mdb-react-ui-kit";
 import { Button, Col, Container, InputGroup, Row } from 'react-bootstrap';
 import { Form, Link, useNavigate } from 'react-router-dom';
-import ProductUpdateForm from './ProductUpdateForm';
-function EditProductForm() {
+import ProductUpdateForm from '../forms/ProductUpdateForm';
+
+
+function ManageOrder() {
   const [products, setProducts] = useState([])
   const [product, setProduct] = useState([])
   const [show, setShow] = useState(false)
-
   let rows = [];
-  
   useEffect(() => {
-    fetch("http://localhost:8080/products",{
+    fetch("http://localhost:8080/",{
       method : "GET",
       headers : {
+          "Authorization": localStorage.getItem("tokenKey"),
           "Content-Type":"application/json"
       },
-
+     
   })
     .then((res) => res.json())
     .then((result) =>  setProducts(result))
@@ -91,24 +92,18 @@ function EditProductForm() {
    
 }
 function handleButton(product){
-    setShow(!show)
-    setProduct(product)
-    
+  setShow(!show)
+  setProduct(product)
+  
 }
-
-
-
-
   return (
     <Container>
         <Row>
           <Link to="/adminpanel/productmanagement"><Button> Go Back</Button> </Link>
-        </Row>
-        
+        </Row> 
         {showProducts()}
     </Container>
-    
   )
 }
 
-export default EditProductForm
+export default ManageOrder
